@@ -76,8 +76,8 @@ const About = () => {
             <div className="col-sm-12">
               <div className="wpb_text_column wpb_content_element">
                 <div className="wpb_wrapper">
-                  <h3><strong>About Goodline Photography<br /></strong></h3>
-                  <p>At GOODLINE PHOTOGRAPHY, we believe that every moment tells a story, and we are passionate about capturing those stories through our lens. Whether it's a wedding, corporate event, portrait session, or a special occasion, our team of skilled photographers ensures that your memories are preserved beautifully and timelessly. With a keen eye for detail and a creative approach, we specialize in high-quality photography that brings emotions to life. From candid moments to perfectly framed shots, we strive to deliver exceptional images that you can cherish forever. Let GOODLINE PHOTOGRAPHY turn your moments into masterpieces!</p>
+                  <h3><strong>About Vivid Photo Studio<br /></strong></h3>
+                  <p>At VIVID PHOTO STUDIO, we believe that every moment tells a story, and we are passionate about capturing those stories through our lens. Whether it's a wedding, corporate event, portrait session, or a special occasion, our team of skilled photographers ensures that your memories are preserved beautifully and timelessly. With a keen eye for detail and a creative approach, we specialize in high-quality photography that brings emotions to life. From candid moments to perfectly framed shots, we strive to deliver exceptional images that you can cherish forever. Let VIVID PHOTO STUDIO turn your moments into masterpieces!</p>
                   <p>With a passion for storytelling and an eye for detail, we bring life to every frame, ensuring each shot reflects emotion and beauty. From professional studio setups to outdoor shoots, we cater to all your photography needs with perfection.</p>
                 </div>
               </div>
@@ -106,7 +106,7 @@ const About = () => {
               <div className="col-sm-12">
                 <div className="skill-wrapper linear linear-text padding-lg-35t">
                   <div className="text-wrap">
-                    <h3 className="title">Why Choose Goodline Photography ?</h3>
+                    <h3 className="title">Why Choose Vivid Photo Studio ?</h3>
                     <div className="text" style={{marginTop: '15px'}}>
                       Professional Excellence – Our team of skilled photographers delivers high-quality images with attention to detail, Creative & Unique Approach – We bring a fresh perspective to every shoot, ensuring your photos are truly special, Customer-Centric Service – Your satisfaction is our priority, and we tailor our services to meet your vision, Timely Delivery – We ensure quick turnaround times without compromising on quality, Affordable & Transparent Pricing – Get top-quality photography at competitive rates with no hidden costs.
                     </div>
@@ -169,11 +169,11 @@ const About = () => {
                   <div className="about-section-simple">
                     <div className="content" style={{paddingLeft: '40px'}}>
                       <div className="subtitle">BEST PHOTOGRAPHY COMPANY</div>
-                      <h2 className="title">GOODLINE photography</h2>
+                      <h2 className="title">VIVID PHOTO STUDIO</h2>
                       <div className="description">
-                        At GOODLINE PHOTOGRAPHY, we don't just take pictures—we create memories that last a lifetime. Our passion for photography drives us to capture emotions, stories, and the beauty of every moment with creativity and precision. Whether it's a wedding, a corporate event, a family portrait, or a product shoot, we bring a unique perspective and professional expertise to every project.
+                        At VIVID PHOTO STUDIO, we don't just take pictures—we create memories that last a lifetime. Our passion for photography drives us to capture emotions, stories, and the beauty of every moment with creativity and precision. Whether it's a wedding, a corporate event, a family portrait, or a product shoot, we bring a unique perspective and professional expertise to every project.
                         <blockquote>
-                          <p>" Experience the art of storytelling through photography with GOODLINE ! "</p>
+                          <p>" Experience the art of storytelling through photography with VIVID PHOTO STUDIO ! "</p>
                         </blockquote>
                         <p>With state-of-the-art equipment and a keen eye for detail, we ensure that every shot is perfect, reflecting the essence of the moment. Our goal is to provide you with timeless images that you can cherish forever.</p>
                       </div>

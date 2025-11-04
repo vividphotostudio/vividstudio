@@ -88,7 +88,7 @@ const Contact = () => {
                         <div className="content-item">
                           <h5 className="title">Information: </h5>
                           <div className="address">
-                            <a href="#">Email ID : goodlinephotography@gmail.com</a>
+                            <a href="#">Email ID : vividphotostudio@gmail.com</a>
                             <a href="tel:+919150056656">Call : +91 91500 56656 / +91 86751 54555</a>
                           </div>
                         </div>

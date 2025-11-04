@@ -13,13 +13,13 @@ const Footer = () => {
                     <img src="/images/goodline/goodline-logo.png" alt="" style={{filter: 'brightness(0.4)'}} />
                   </div>
                   <div className="socials">
-                    <a href="https://www.facebook.com/goodlinephotography/" className="fa fa-facebook"></a>
-                    <a href="https://in.pinterest.com/goodlinephotography/_created/" className="fa fa-pinterest"></a>
-                    <a href="https://www.instagram.com/goodlinephotography/" className="fa fa-instagram"></a>
-                    <a href="https://www.youtube.com/@Goodlinephotography" className="fa fa-youtube"></a>
-                    <a href="https://www.linkedin.com/company/goodline-photography/" className="fa fa-linkedin"></a>
+                    <a href="https://www.facebook.com/vividphotostudio/" className="fa fa-facebook"></a>
+                    <a href="https://in.pinterest.com/vividphotostudio/_created/" className="fa fa-pinterest"></a>
+                    <a href="https://www.instagram.com/vividphotostudio/" className="fa fa-instagram"></a>
+                    <a href="https://www.youtube.com/@VividPhotoStudio" className="fa fa-youtube"></a>
+                    <a href="https://www.linkedin.com/company/vivid-photo-studio/" className="fa fa-linkedin"></a>
                   </div>
-                  <div className="copy_content text">© Goodline 2025. All Right Reserved. Designed by <a href="https://techparkinfosolutions.com/">Tech Park Info Solutions</a></div>
+                  <div className="copy_content text">© Vivid Photo Studio 2025. All Right Reserved. Designed by <a href="https://techparkinfosolutions.com/">Tech Park Info Solutions</a></div>
                 </div>
               </div>
             </div>
@@ -28,7 +28,7 @@ const Footer = () => {
                 <h5>Information</h5>
                 <div className="textwidget">
                   <p><b>Address :</b> 13, Valar Nagar Main Rd, opposite Elanthaikulam, Valar Nagar, Telecom Nagar, Madurai, Tamil Nadu 625023</p>
-                  <p><b>Email ID :</b> <a href="mailto:goodlinephotography@gmail.com">goodlinephotography@gmail.com</a></p>
+                  <p><b>Email ID :</b> <a href="mailto:vividphotostudio@gmail.com">vividphotostudio@gmail.com</a></p>
                   <p><a href="tel:919150056656"><b>Call :</b> +91 91500 56656 / +91 86751 54555 </a></p>
                 </div>
               </div>

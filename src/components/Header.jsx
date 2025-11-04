@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -21,9 +19,9 @@ const Header = () => {
           <div className="row">
             <div className="col-xs-12">
               <header className="right-menu classic">
-                <Link to="/" className="logo" onClick={closeMobileMenu}>
+                <a href="/" className="logo" onClick={closeMobileMenu}>
                   <img src="/images/goodline/goodline-logo.png" alt="" />
-                </Link>
+                </a>
                 <a href="javascript:void(0)" className="mob-nav" onClick={toggleMobileMenu}>
                   <div className="hamburger">
                     <i>Menu</i>
@@ -38,23 +36,23 @@ const Header = () => {
                     </div>
                   </a>
                   <ul id="menu-menu-1" className="menu">
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/" onClick={closeMobileMenu}>Home</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/" onClick={closeMobileMenu}>Home</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/about' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/about" onClick={closeMobileMenu}>About us</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/about" onClick={closeMobileMenu}>About us</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/photography' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/photography" onClick={closeMobileMenu}>Photography</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/photography" onClick={closeMobileMenu}>Photography</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/blog' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/blog" onClick={closeMobileMenu}>Blogs</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/blog" onClick={closeMobileMenu}>Blogs</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/services' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/services" onClick={closeMobileMenu}>Services</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/services" onClick={closeMobileMenu}>Services</a>
                     </li>
                     <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children">
-                      <Link to="/contact" onClick={closeMobileMenu}>Contact us</Link>
+                      <a href="/contact" onClick={closeMobileMenu}>Contact us</a>
                     </li>
                   </ul>
                 </nav>
@@ -79,22 +77,22 @@ const Header = () => {
                     </div>
                   </a>
                   <ul id="menu-menu-1" className="menu">
-                    <li className={`menu-item menu-item-has-children current-menu-ancestor mega-menu ${location.pathname === '/' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/">Home</Link>
+                    <li className="menu-item menu-item-has-children current-menu-ancestor mega-menu">
+                      <a href="/">Home</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/about' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/about">About us</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/about">About us</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/photography' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/photography">Photography</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/photography">Photography</a>
                     </li>
                   </ul>
                 </nav>
 
                 <div className="logo">
-                  <Link to="/" className="logo">
+                  <a href="/" className="logo">
                     <img src="/images/goodline/goodline-logo.png" alt="" />
-                  </Link>
+                  </a>
                 </div>
 
                 <nav id="topmenu" className="topmenu">
@@ -106,14 +104,14 @@ const Header = () => {
                     </div>
                   </a>
                   <ul id="menu-menu-1" className="menu">
-                    <li className={`menu-item menu-item-has-children current-menu-ancestor mega-menu ${location.pathname === '/services' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/services">Services</Link>
+                    <li className="menu-item menu-item-has-children current-menu-ancestor mega-menu">
+                      <a href="/services">Services</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/blog' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/blog">Blogs</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/blog">Blogs</a>
                     </li>
-                    <li className={`menu-item menu-item-has-children mega-menu ${location.pathname === '/contact' ? 'current-menu-ancestor' : ''}`}>
-                      <Link to="/contact">Book Appointments</Link>
+                    <li className="menu-item menu-item-has-children mega-menu">
+                      <a href="/contact">Book Appointments</a>
                     </li>
                   </ul>
                 </nav>
