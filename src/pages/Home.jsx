@@ -33,41 +33,66 @@ const Home = () => {
     // Initialize Swiper when scripts are loaded
     const initSwiper = () => {
       if (window.Swiper) {
-        // Banner slider
-        new window.Swiper('.swiper-container', {
-          mousewheel: false,
-          autoplay: {
-            delay: 5000,
-          },
-          loop: true,
-          speed: 1500,
-          centeredSlides: true,
-          spaceBetween: 0,
-          pagination: {
-            el: '.swiper-pagination',
-            type: 'fraction',
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
+        // Banner slider - only initialize if not already handled by jQuery
+        const bannerContainer = document.querySelector('.banner-slider-wrap .swiper-container');
+        if (bannerContainer && !bannerContainer.swiper) {
+          const bannerSwiper = new window.Swiper('.banner-slider-wrap .swiper-container', {
+            mousewheel: false,
+            autoplay: {
+              delay: 2000,
+              disableOnInteraction: false,
+            },
+            loop: true,
+            speed: 2000,
+            centeredSlides: false, // Changed to false to prevent blank screens
+            slidesPerView: 1,
+            spaceBetween: 0,
+            pagination: {
+              el: '.banner-slider-wrap .swiper-pagination-fraction',
+              type: 'fraction',
+            },
+            navigation: {
+              nextEl: '.banner-slider-wrap .swiper-button-next',
+              prevEl: '.banner-slider-wrap .swiper-button-prev',
+            },
+          });
 
-        // Testimonials slider
-        new window.Swiper('.main-header-testimonial', {
-          mousewheel: false,
-          autoplay: {
-            delay: 5000,
-          },
-          loop: true,
-          speed: 1500,
-          spaceBetween: 0,
-          direction: 'vertical',
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-        });
+          // Start autoplay immediately and control on scroll
+          bannerSwiper.autoplay.start();
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                bannerSwiper.autoplay.start();
+              } else {
+                bannerSwiper.autoplay.stop();
+              }
+            });
+          });
+
+          if (bannerContainer) {
+            observer.observe(bannerContainer);
+          }
+        }
+
+        // Testimonials slider - only initialize if not already handled by jQuery
+        const testimonialContainer = document.querySelector('.main-header-testimonial .swiper-container');
+        if (testimonialContainer && !testimonialContainer.swiper) {
+          new window.Swiper('.main-header-testimonial .swiper-container', {
+            mousewheel: false,
+            autoplay: {
+              delay: 5000,
+            },
+            loop: true,
+            speed: 1500,
+            spaceBetween: 0,
+            direction: 'vertical',
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true,
+            },
+          });
+        }
       }
     };
 
@@ -101,7 +126,7 @@ const Home = () => {
           <div className="row margin-lg-120b margin-md-80b margin-sm-80b margin-xs-40b">
             <div className="col-sm-12">
               <div className="banner-slider-wrap urban">
-                <div className="swiper-container" data-mouse="0" data-autoplay="5000" data-loop="1" data-speed="1500" data-center="1" data-space="0" data-pagination-type="fraction" data-mode="horizontal">
+                <div className="swiper-container" data-mouse="0" data-loop="1" data-speed="1500" data-center="1" data-space="0" data-mode="horizontal">
                   <div className="swiper-wrapper">
                     <div className="swiper-slide full-height-window">
                       <img src="/images/goodline/banner-11.jpg" className="s-img-switch" alt="" />
@@ -139,11 +164,11 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="pag-wrapper">
-                    <div className="swiper-button-prev swiper-button-prev-swiper-unique-id-0">Prev</div>
-                    <div className="swiper-pagination swiper-pagination-swiper-unique-id-0 swiper-pagination-fraction">
-                      <span className="swiper-pagination-current">02</span> / <span className="swiper-pagination-total">03</span>
+                    <div className="swiper-button-prev">Prev</div>
+                    <div className="swiper-pagination swiper-pagination-fraction">
+                      <span className="swiper-pagination-current">1</span> / <span className="swiper-pagination-total">4</span>
                     </div>
-                    <div className="swiper-button-next swiper-button-next-swiper-unique-id-0">Next</div>
+                    <div className="swiper-button-next">Next</div>
                   </div>
                 </div>
               </div>

@@ -5844,3 +5844,5 @@ div#grid-3120, div#grid-3190, div#grid-4045{
     width: 100%;
     object-fit: cover !important;
 }
+
+/* Prevent jQuery swiper from initializing on React-managed swipers */
