@@ -68,7 +68,7 @@ const Photography = () => {
       {/* Preloader */}
       <div className="preloader-text">
         <div className="text-wrap">
-          <img src="/images/goodline/goodline-logo.png" alt="" style={{width: '180px'}} />
+          <img src="/images/goodline/vivid-logo.jpg" alt="" style={{width: '180px'}} />
         </div>
         <span>loading...</span>
       </div>

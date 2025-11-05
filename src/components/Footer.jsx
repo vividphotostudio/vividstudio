@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="wiso-widget-copyright">
                   <div className="img-wrap">
                     <img
-                      src="/images/goodline/goodline-logo.png"
+                      src="/images/goodline/vivid-logo.jpg"
                       alt=""
                       style={{ filter: "brightness(0.4)" }}
                     />

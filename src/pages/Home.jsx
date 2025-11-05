@@ -593,7 +593,7 @@ const Home = () => {
                     <div className="content-slide">
                       <div className="logo-customer s-back-switch">
                         <img
-                          src="/images/goodline/testi3.jpg"
+                          src="/images/goodline/banner-6.jpg"
                           alt=""
                           className="s-img-switch"
                         />

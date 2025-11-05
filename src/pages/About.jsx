@@ -46,7 +46,7 @@ const About = () => {
       <div className="preloader-text">
         <div className="text-wrap">
           <img
-            src="/images/goodline/goodline-logo.png"
+            src="/images/goodline/vivid-logo.jpg"
             alt=""
             style={{ width: "180px" }}
           />
