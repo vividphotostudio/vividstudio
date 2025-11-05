@@ -46,7 +46,7 @@ const Blog = () => {
       title: '"Capturing Timeless Moments: Why Wedding Photography Is More Than Just Pictures"',
       image: '/goodline_apanel/assets/images/movies/gallery/100228721485872.jpg',
       date: '22 Feb, 2025',
-      category: 'GOODLINE PHOOGRAPHY',
+      category: 'VIVID PHOTO STUDIO',
       excerpt: 'Weddings are not just ceremonies—they\'re stories of love, tradition, and celebration. As professional wedding photographers, we don\'t just take pictures; we preserve emotions, laughter, happy tears, and unforgettable moments. Every click tells a s'
     },
     {
@@ -54,7 +54,7 @@ const Blog = () => {
       title: 'Celebrating Tamil Traditions: A Glimpse into Traditional South Indian Weddings',
       image: '/goodline_apanel/assets/images/movies/gallery/17355592007183.jpg',
       date: '22 Feb, 2025',
-      category: 'GOODLINE PHOOGRAPHY',
+      category: 'VIVID PHOTO STUDIO',
       excerpt: 'Tamil weddings are a beautiful fusion of ancient customs, colorful rituals, and deep-rooted traditions that celebrate the sacred bond of marriage. These ceremonies are not just spiritual unions but also grand family festivals filled with joy, devo'
     }
   ];
@@ -112,7 +112,7 @@ const Blog = () => {
                   <div className="row">
                     <div className="headings classic_text">
                       <img src="/images/decor.png" className="icon fade-up transition-0" alt="" />
-                      <h3 className="title fade-up transition-1">Goodline Photography</h3>
+                      <h3 className="title fade-up transition-1">VIVID PHOTO STUDIO</h3>
                       <h5 className="subtitle fade-up transition-2">Our stories from groom and bride</h5>
                     </div>
                   </div>

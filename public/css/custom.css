@@ -747,6 +747,19 @@ header .logo:hover {
     opacity: 1;
 }
 
+/* Custom logo styling - big and round */
+header .logo img {
+    max-height: 120px !important;
+    border-radius: 50% !important;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+header .logo:hover img {
+    transform: scale(1.05);
+}
+
 .header_trans-fixed .f-right > div:first-child::before {
     background: #fff !important;
 }
@@ -5715,14 +5728,14 @@ div#grid-3120, div#grid-3190, div#grid-4045{
     align-items: center;
 }
 .bg_img{
-    background-image: url(../images/goodline/cta-bg.jpg) !important;
+    background-image: url(../images/goodline/cta-bg.jpeg) !important;
     background-position: top !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-attachment: fixed;
 }
 .bg_img_new{
-    background-image: url(../images/goodline/cta-2.jpg) !important;
+    background-image: url(../images/goodline/cta-2.jpeg) !important;
     background-position: top !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -5843,6 +5856,131 @@ div#grid-3120, div#grid-3190, div#grid-4045{
     height: 500px;
     width: 100%;
     object-fit: cover !important;
+}
+
+/* Center pagination between prev/next buttons */
+.pag-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pag-wrapper .swiper-pagination {
+    order: 2;
+    margin: 0 10px;
+}
+
+.pag-wrapper .swiper-button-prev {
+    order: 1;
+}
+
+.pag-wrapper .swiper-button-next {
+    order: 3;
+}
+
+/* Custom pagination styles */
+.custom-current,
+.custom-total {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.custom-separator {
+    font-size: 20px;
+    color: #fff;
+    margin: 0 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.custom-bullet {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-bullet:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+    background: #fff;
+    color: #222;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Map Container Styles */
+.mapContainer {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mapContainer iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 10px;
+}
+
+.directionButton {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #195AFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(25, 90, 255, 0.3);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.directionButton:hover {
+    background-color: #0d4bcc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(25, 90, 255, 0.4);
+}
+
+.directionButton img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+    .directionButton {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
 }
 
 /* Prevent jQuery swiper from initializing on React-managed swipers */

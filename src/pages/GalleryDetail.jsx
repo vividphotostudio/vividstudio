@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { categoriesService, photosService } from '../services/api';
 
 const GalleryDetail = () => {
   const { id } = useParams();
+  const [category, setCategory] = useState(null);
+  const [photos, setPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Load external scripts
@@ -43,87 +48,29 @@ const GalleryDetail = () => {
     };
   }, []);
 
-  // Mock data for different portfolio items
-  const portfolioData = {
-    4: {
-      title: 'Wedding Moments',
-      bannerImage: '/images/goodline/banner-11.jpg',
-      eventType: 'Wedding Event',
-      description: 'https://www.instagram.com/goodlinephotography/',
-      images: [
-        '/goodline_apanel/assets/images/products/17355594440641.jpg',
-        '/goodline_apanel/assets/images/products/16334204390982.jpg',
-        '/goodline_apanel/assets/images/products/15187621717556.jpg',
-        '/goodline_apanel/assets/images/products/20755584780942.jpg',
-        '/goodline_apanel/assets/images/products/1963993847001.jpg',
-        '/goodline_apanel/assets/images/products/1478872375500.jpg',
-        '/goodline_apanel/assets/images/products/1032683442892.jpg',
-        '/goodline_apanel/assets/images/products/11396554752783.jpg',
-        '/goodline_apanel/assets/images/products/12178994041549.jpg',
-        '/goodline_apanel/assets/images/products/128001364474658.jpg',
-        '/goodline_apanel/assets/images/products/143674533909859.jpg'
-      ]
-    },
-    5: {
-      title: 'Rajaganapathy & Roshini',
-      bannerImage: '/images/goodline/banner-11.jpg',
-      eventType: 'Wedding Event',
-      description: 'https://www.instagram.com/goodlinephotography/',
-      images: [
-        '/goodline_apanel/assets/images/products/17355594440641.jpg',
-        '/goodline_apanel/assets/images/products/16334204390982.jpg',
-        '/goodline_apanel/assets/images/products/15187621717556.jpg',
-        '/goodline_apanel/assets/images/products/20755584780942.jpg',
-        '/goodline_apanel/assets/images/products/1963993847001.jpg',
-        '/goodline_apanel/assets/images/products/1478872375500.jpg',
-        '/goodline_apanel/assets/images/products/1032683442892.jpg',
-        '/goodline_apanel/assets/images/products/11396554752783.jpg',
-        '/goodline_apanel/assets/images/products/12178994041549.jpg',
-        '/goodline_apanel/assets/images/products/128001364474658.jpg',
-        '/goodline_apanel/assets/images/products/143674533909859.jpg'
-      ]
-    },
-    6: {
-      title: 'Ashwin & shalini',
-      bannerImage: '/images/goodline/banner-11.jpg',
-      eventType: 'Wedding Event',
-      description: 'https://www.instagram.com/goodlinephotography/',
-      images: [
-        '/goodline_apanel/assets/images/products/17355594440641.jpg',
-        '/goodline_apanel/assets/images/products/16334204390982.jpg',
-        '/goodline_apanel/assets/images/products/15187621717556.jpg',
-        '/goodline_apanel/assets/images/products/20755584780942.jpg',
-        '/goodline_apanel/assets/images/products/1963993847001.jpg',
-        '/goodline_apanel/assets/images/products/1478872375500.jpg',
-        '/goodline_apanel/assets/images/products/1032683442892.jpg',
-        '/goodline_apanel/assets/images/products/11396554752783.jpg',
-        '/goodline_apanel/assets/images/products/12178994041549.jpg',
-        '/goodline_apanel/assets/images/products/128001364474658.jpg',
-        '/goodline_apanel/assets/images/products/143674533909859.jpg'
-      ]
-    },
-    7: {
-      title: 'Model Photography',
-      bannerImage: '/images/goodline/banner-11.jpg',
-      eventType: 'Model Shoot',
-      description: 'https://www.instagram.com/goodlinephotography/',
-      images: [
-        '/goodline_apanel/assets/images/products/17355594440641.jpg',
-        '/goodline_apanel/assets/images/products/16334204390982.jpg',
-        '/goodline_apanel/assets/images/products/15187621717556.jpg',
-        '/goodline_apanel/assets/images/products/20755584780942.jpg',
-        '/goodline_apanel/assets/images/products/1963993847001.jpg',
-        '/goodline_apanel/assets/images/products/1478872375500.jpg',
-        '/goodline_apanel/assets/images/products/1032683442892.jpg',
-        '/goodline_apanel/assets/images/products/11396554752783.jpg',
-        '/goodline_apanel/assets/images/products/12178994041549.jpg',
-        '/goodline_apanel/assets/images/products/128001364474658.jpg',
-        '/goodline_apanel/assets/images/products/143674533909859.jpg'
-      ]
-    }
-  };
+  useEffect(() => {
+    const fetchCategoryData = async () => {
+      try {
+        setLoading(true);
+        const [categoryData, photosData] = await Promise.all([
+          categoriesService.getById(id),
+          photosService.getByCategoryId(id)
+        ]);
+        setCategory(categoryData);
+        setPhotos(photosData);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching category data:', err);
+        setError('Failed to load gallery. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const currentPortfolio = portfolioData[id] || portfolioData[5]; // Default to first item if not found
+    if (id) {
+      fetchCategoryData();
+    }
+  }, [id]);
 
   return (
     <>
@@ -141,12 +88,14 @@ const GalleryDetail = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch">
-                <img src={currentPortfolio.bannerImage} className="s-img-switch" alt="" />
+                <img src="/images/goodline/banner-11.jpg" className="s-img-switch" alt="" />
                 <span className="overlay"></span>
                 <div className="content">
                   <div className="row">
                     <div className="col-xs-12">
-                      <h3 className="title">{currentPortfolio.title}</h3>
+                      <h3 className="title">
+                        {loading ? 'Loading...' : error ? 'Error' : category?.name || 'Gallery'}
+                      </h3>
                     </div>
                   </div>
                 </div>
@@ -161,9 +110,17 @@ const GalleryDetail = () => {
             <div className="col-xs-12">
               <div className="user-info-wrap">
                 <div className="client-content">
-                  <h3 className="title">{currentPortfolio.eventType}</h3>
+                  <h3 className="title">
+                    {loading ? 'Loading...' : error ? 'Error Loading Gallery' : `${category?.name} Photography`}
+                  </h3>
                   <div className="descr">
-                    <p><a href={currentPortfolio.description} target="_blank" rel="noopener noreferrer">{currentPortfolio.description}</a></p>
+                    {loading ? (
+                      <p>Loading gallery details...</p>
+                    ) : error ? (
+                      <p style={{ color: 'red' }}>{error}</p>
+                    ) : (
+                      <p><a href="https://www.instagram.com/goodlinephotography/" target="_blank" rel="noopener noreferrer">https://www.instagram.com/goodlinephotography/</a></p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -174,13 +131,27 @@ const GalleryDetail = () => {
         {/* Portfolio Images */}
         <div className="container portfolio-all-images">
           <div className="row">
-            {currentPortfolio.images.map((image, index) => (
-              <div key={index} className="col-lg-6 portrait-images">
-                <div className="image">
-                  <img src={image} alt={`${currentPortfolio.title} ${index + 1}`} />
-                </div>
+            {loading ? (
+              <div className="col-12 text-center" style={{ padding: '50px' }}>
+                <p>Loading photos...</p>
               </div>
-            ))}
+            ) : error ? (
+              <div className="col-12 text-center" style={{ padding: '50px', color: 'red' }}>
+                <p>{error}</p>
+              </div>
+            ) : photos.length === 0 ? (
+              <div className="col-12 text-center" style={{ padding: '50px' }}>
+                <p>No photos found in this category.</p>
+              </div>
+            ) : (
+              photos.map((photo, index) => (
+                <div key={photo.id || index} className="col-lg-6 portrait-images">
+                  <div className="image">
+                    <img src={photo.url} alt={photo.title || `${category?.name} ${index + 1}`} />
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ const Header = () => {
             <div className="col-xs-12">
               <header className="right-menu classic">
                 <a href="/" className="logo" onClick={closeMobileMenu}>
-                  <img src="/images/goodline/goodline-logo.png" alt="" />
+                  <img src="/images/goodline/vivid-logo.jpg" alt="" />
                 </a>
                 <a href="javascript:void(0)" className="mob-nav" onClick={toggleMobileMenu}>
                   <div className="hamburger">
@@ -44,9 +44,6 @@ const Header = () => {
                     </li>
                     <li className="menu-item menu-item-has-children mega-menu">
                       <a href="/photography" onClick={closeMobileMenu}>Photography</a>
-                    </li>
-                    <li className="menu-item menu-item-has-children mega-menu">
-                      <a href="/blog" onClick={closeMobileMenu}>Blogs</a>
                     </li>
                     <li className="menu-item menu-item-has-children mega-menu">
                       <a href="/services" onClick={closeMobileMenu}>Services</a>
@@ -91,7 +88,7 @@ const Header = () => {
 
                 <div className="logo">
                   <a href="/" className="logo">
-                    <img src="/images/goodline/goodline-logo.png" alt="" />
+                    <img src="/images/goodline/vivid-logo.jpg" alt="" />
                   </a>
                 </div>
 
@@ -106,9 +103,6 @@ const Header = () => {
                   <ul id="menu-menu-1" className="menu">
                     <li className="menu-item menu-item-has-children current-menu-ancestor mega-menu">
                       <a href="/services">Services</a>
-                    </li>
-                    <li className="menu-item menu-item-has-children mega-menu">
-                      <a href="/blog">Blogs</a>
                     </li>
                     <li className="menu-item menu-item-has-children mega-menu">
                       <a href="/contact">Book Appointments</a>

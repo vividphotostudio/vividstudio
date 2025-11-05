@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { categoriesService } from '../services/api';
 
 const Photography = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     // Load external scripts
     const scripts = [
@@ -41,32 +45,23 @@ const Photography = () => {
     };
   }, []);
 
-  const portfolioItems = [
-    {
-      id: 7,
-      title: 'Model Photography',
-      image: '/goodline_apanel/assets/images/movies/gallery/21980921640468.jpg',
-      link: '/photography-detail/7'
-    },
-    {
-      id: 6,
-      title: 'Ashwin & shalini',
-      image: '/goodline_apanel/assets/images/movies/gallery/15940054288022.jpg',
-      link: '/photography-detail/6'
-    },
-    {
-      id: 5,
-      title: 'Rajaganapathy & Roshini',
-      image: '/goodline_apanel/assets/images/movies/gallery/20755583772155.jpg',
-      link: '/photography-detail/5'
-    },
-    {
-      id: 4,
-      title: 'Wedding Moments',
-      image: '/goodline_apanel/assets/images/movies/gallery/1495086236438.jpg',
-      link: '/photography-detail/4'
-    }
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const data = await categoriesService.getAll();
+        setCategories(data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching categories:', err);
+        setError('Failed to load categories. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   return (
     <>
@@ -104,13 +99,13 @@ const Photography = () => {
             <div className="col-xs-12">
               <div className="user-info-wrap">
                 <div className="client-content">
-                  <h3 className="title">Goodline Photography</h3>
+                  <h3 className="title">VIVID PHOTO STUDIO</h3>
                   <div className="descr">
-                    Welcome to our portfolio, where every frame tells a story! At GOODLINE PHOTOGRAPHY, we specialize in capturing the essence of every moment with creativity and precision. From breathtaking wedding photography and lively event coverage to stunning portraits and commercial shoots, our work reflects passion, artistry, and attention to detail.
+                    Welcome to our portfolio, where every frame tells a story! At VIVID PHOTO STUDIO, we specialize in capturing the essence of every moment with creativity and precision. From breathtaking wedding photography and lively event coverage to stunning portraits and commercial shoots, our work reflects passion, artistry, and attention to detail.
                     <br /><br />
                     Explore our collection and witness how we turn ordinary moments into extraordinary memories. Whether it's emotions, celebrations, or professional brand storytelling, our portfolio showcases the best of what we do.
                     <br /><br />
-                    📸 Let our work speak for itself—experience the magic of GOODLINE PHOTOGRAPHY!
+                    📸 Let our work speak for itself—experience the magic of VIVID PHOTO STUDIO!
                   </div>
                 </div>
               </div>
@@ -124,26 +119,36 @@ const Photography = () => {
                 <div className="vc_column-inner">
                   <div className="wpb_wrapper">
                     <div className="row">
-                      {portfolioItems.map((item) => (
-                        <div key={item.id} className="col-lg-6 col-md-6 col-sm-12" style={{marginBottom: '20px'}}>
-                          <div className="item block_item_0">
-                            <Link to={item.link} className="item-link gridrotate-alb hover3" target="_self">
-                              <div className="item-img">
-                                <div className="images-one s-back-switch">
-                                  <img src={item.image} alt={item.title} className="s-img-switch" />
-                                </div>
-                              </div>
-                              <div className="item-overlay">
-                                <h5 className="portfolio-title">
-                                  {item.title}
-                                  <br />
-                                  <button>View Pictures</button>
-                                </h5>
-                              </div>
-                            </Link>
-                          </div>
+                      {loading ? (
+                        <div className="col-12 text-center" style={{ padding: '50px' }}>
+                          <p>Loading categories...</p>
                         </div>
-                      ))}
+                      ) : error ? (
+                        <div className="col-12 text-center" style={{ padding: '50px', color: 'red' }}>
+                          <p>{error}</p>
+                        </div>
+                      ) : (
+                        categories.map((category) => (
+                          <div key={category.id} className="col-lg-6 col-md-6 col-sm-12" style={{marginBottom: '20px'}}>
+                            <div className="item block_item_0">
+                              <a href={`/photography-detail/${category.id}`} className="item-link gridrotate-alb hover3" target="_self">
+                                <div className="item-img">
+                                  <div className="images-one s-back-switch">
+                                    <img src={category.image_url} alt={category.name} className="s-img-switch" />
+                                  </div>
+                                </div>
+                                <div className="item-overlay">
+                                  <h5 className="portfolio-title">
+                                    {category.name}
+                                    <br />
+                                    <button>View Pictures</button>
+                                  </h5>
+                                </div>
+                              </a>
+                            </div>
+                          </div>
+                        ))
+                      )}
                     </div>
                   </div>
                 </div>

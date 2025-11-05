@@ -56,7 +56,7 @@ const Contact = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch">
-                <img src="/images/goodline/banner-2.jpg" className="s-img-switch" alt="" />
+                <img src="/images/goodline/banner-2.jpeg" className="s-img-switch" alt="" />
                 <span className="overlay"></span>
                 <div className="content">
                   <div className="row">
@@ -82,7 +82,7 @@ const Contact = () => {
                         <div className="content-item">
                           <h5 className="title">Address: </h5>
                           <div className="address">
-                            13, Valar Nagar Main Rd, opposite Elanthaikulam, Valar Nagar, Telecom Nagar, Madurai, Tamil Nadu 625023
+                            Anjaneyar Kovil St, Sabapathy Nagar, Noothencheri, Vengavasal, Chennai, Tamil Nadu 600126
                           </div>
                         </div>
                         <div className="content-item">
@@ -128,16 +128,20 @@ const Contact = () => {
         {/* Google Maps */}
         <div className="container-full">
           <div className="row margin-lg-120b margin-sm-80b margin-xs-60b">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29443538.9620802!2d61.02101754100091!3d19.731627470788023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c5b74101d369%3A0xf25f3c43e26bab71!2sGoodline%20Photography!5e1!3m2!1sen!2sin!4v1740737446652!5m2!1sen!2sin"
-              width="100%"
-              height="450"
-              style={{border: 0}}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Goodline Photography Location"
-            ></iframe>
+            <div className="mapContainer">
+              <iframe
+                title="Vivid Photo Studio Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.3461667847243!2d80.1586203!3d12.9006067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525fdbb3fda901%3A0x39016fd9d58142b4!2sVivid%20photo%20studio!5e0!3m2!1sen!2sin!4v1736956789123!5m2!1sen!2sin"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{border: 0, width: '100%', height: '450px'}}
+                allowFullScreen=""
+              ></iframe>
+              <button className="directionButton">
+                Get Direction
+                <img src="data:image/svg+xml,%3csvg%20width='16'%20height='16'%20viewBox='0%200%2016%2016'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20clip-path='url(%23clip0_82_1895)'%3e%3cpath%20d='M5.33348%2011.9997L0.666809%2014.6663V3.99967L5.33348%201.33301M5.33348%2011.9997L10.6668%2014.6663M5.33348%2011.9997V1.33301M10.6668%2014.6663L15.3335%2011.9997V1.33301L10.6668%203.99967M10.6668%2014.6663V3.99967M10.6668%203.99967L5.33348%201.33301'%20stroke='%23195AFF'%20stroke-width='1.2'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_82_1895'%3e%3crect%20width='16'%20height='16'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" alt="" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

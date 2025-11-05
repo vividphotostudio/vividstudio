@@ -56,7 +56,7 @@ const Services = () => {
           <div className="row">
             <div className="col-sm-12">
               <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch">
-                <img src="/images/goodline/banner-5.jpg" className="s-img-switch" alt="" />
+                <img src="/images/goodline/banner-5.jpeg" className="s-img-switch" alt="" />
                 <span className="overlay"></span>
                 <div className="content">
                   <div className="row">
@@ -95,17 +95,7 @@ const Services = () => {
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 col-md-6">
-              <div className="services center">
-                <div className="content">
-                  <img src="/images/goodline/drone.png" alt="" style={{width: '100px'}} />
-                  <h4 className="title">Drone Shots</h4>
-                  <div className="text">
-                    Take your memories to new heights with breathtaking aerial photography and videography. Our high-quality drone shots provide a cinematic view of your events, capturing the grandeur from a unique perspective. Perfect for weddings, outdoor shoots, and large gatherings, our drone footage adds a spectacular touch. Let us give your special moments an extraordinary aerial view.
-                  </div>
-                </div>
-              </div>
-            </div>
+            
             <div className="col-sm-6 col-md-6">
               <div className="services center">
                 <div className="content">
