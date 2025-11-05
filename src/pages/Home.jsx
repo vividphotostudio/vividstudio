@@ -15,6 +15,8 @@ const Home = () => {
     // Load external scripts
     const scripts = [
       "/js/jquery-3.3.1.min.js",
+      "/js/swiper.min.js",
+      "/js/tg_global.js",
       "/js/foxlazy.min.js",
       "/js/isotope.pkgd.min.js",
       "/js/lib/equalHeightsPlugin.js",
@@ -22,7 +24,6 @@ const Home = () => {
       "/js/instagram.js",
       "/js/script.js",
       "/js/scripts.js",
-      "/js/tg_global.js",
       "/js/the-grid.min.js",
       "/js/imagesloaded.min.js",
       "/js/team.js",
@@ -536,7 +537,7 @@ const Home = () => {
                     <div className="content-slide">
                       <div className="logo-customer s-back-switch">
                         <img
-                          src="/images/goodline/testi1.jpg"
+                          src="/images/goodline/banner-2.jpeg"
                           alt=""
                           className="s-img-switch"
                         />
@@ -566,7 +567,7 @@ const Home = () => {
                     <div className="content-slide">
                       <div className="logo-customer s-back-switch">
                         <img
-                          src="/images/goodline/banner-3.jpg"
+                          src="/images/goodline/banner-5.jpeg"
                           alt=""
                           className="s-img-switch"
                         />
