@@ -1,0 +1,88 @@
+/* Progress Bar Animation - Smooth 0% to 100% fill */
+@keyframes progressFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress-bar-fill {
+  width: 0%;
+  transition: none;
+  transform-origin: left;
+}
+
+.progress-bar-fill.active {
+  animation: progressFill 2000ms linear forwards;
+  animation-fill-mode: forwards;
+  width: 0%; /* Start from 0 */
+}
+
+.progress-bar-fill.completed {
+  width: 100% !important;
+  animation: none;
+  transition: width 0.2s ease-out;
+}
+
+.progress-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 20;
+}
+
+.progress-bar-container {
+  width: 60px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.progress-bar-container:hover {
+  transform: scaleY(1.5);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.progress-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: white;
+  border-radius: 9999px;
+  width: 0%;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 768px) {
+  .progress-indicators {
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .progress-bar-container {
+    width: 40px;
+    height: 2px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .progress-indicators {
+    bottom: 15px;
+    gap: 8px;
+  }
+
+  .progress-bar-container {
+    width: 30px;
+    height: 2px;
+  }
+}

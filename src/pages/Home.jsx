@@ -1,15 +1,89 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "../components/ProgressIndicator.css";
+import "../components/ClientSection.css";
 import { categoriesService, photosService } from "../services/api";
 
+const reviews = [
+  {
+    name: "Initha Gnanaraj",
+    review: "Photos clarity and background is very excellent"
+  },
+  {
+    name: "Ramesh Dhandapani",
+    review: "Good"
+  },
+  {
+    name: "Kaavi Kaavi",
+    review: ""
+  },
+  {
+    name: "Dinesh Kumar",
+    review: "Quality of photo is awesome. Studio setup is very nice and big."
+  },
+  {
+    name: "paulraj g.l.",
+    review: ""
+  },
+  {
+    name: "chitra muthu",
+    review: ""
+  },
+  {
+    name: "Stan lee",
+    review: "Excellent place for our photo needs.. Timely and patient service.. Keep rocking.."
+  },
+  {
+    name: "Suvetha Vikram",
+    review: "Superab photography, lovely stills and excellent work. Thank you so much everyone at home was very happy"
+  },
+  {
+    name: "S S",
+    review: ""
+  },
+  {
+    name: "SANGEETHA R",
+    review: ""
+  },
+  {
+    name: "Asha Mary",
+    review: "Excellent"
+  },
+  {
+    name: "Sheeba Varghese",
+    review: ""
+  },
+  {
+    name: "gd78 Daniel",
+    review: "This studio makes memories adorable with amazing moments and clarity pixels. Blend of nature and classic touch coupled with high tech lens is the highlight of this studio."
+  },
+  {
+    name: "Y. Muthulakshmi",
+    review: ""
+  },
+  {
+    name: "Jaba Ananth",
+    review: "Very excellent photo works"
+  },
+  {
+    name: "vinod ezhilarasan",
+    review: "EXCELLENT AND VERY PROFESSIONAL , REALLY GREATFUL TO YOU FOR EXCELLENT OUTPUT OF MY WEDDING SHOOT. THANK YOU"
+  },
+  {
+    name: "Amirdhagadesan Rajasekar",
+    review: "This shop was recently moved to this new location, previously it was located in madambakam. Recently I visited the shop for passport size photos and family photos and i had a really good experience.\n\n1. The shop owner was polite and very responsive.\n2. Made delivery on committed date\n3. The quality of the photos are really very good and I'm very happy with the purchase\n4. The price is also very reasonable.\n\nI think, as it recently moved, so yet to do the final setup of the studio. I saw the tables are not arranged properly and the photo display is not arranged very nicely.\n\nBut I'm not concerned about the arrangements as the quality of the photos are good."
+  }
+];
+
 const Home = () => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   const [sliderPhotos, setSliderPhotos] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isProgressActive, setIsProgressActive] = useState(true);
 
   useEffect(() => {
     // Load external scripts
@@ -72,6 +146,16 @@ const Home = () => {
     fetchSliderPhotos();
   }, []);
 
+  // Reset progress bar animation when slide changes
+  useEffect(() => {
+    setIsProgressActive(false);
+    const timer = setTimeout(() => {
+      setIsProgressActive(true);
+    }, 50); // Small delay to ensure animation resets
+
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
+
   return (
     <>
       {/* Preloader */}
@@ -93,7 +177,7 @@ const Home = () => {
             <div className="col-sm-12">
               <div className="banner-slider-wrap urban">
                 <Swiper
-                  modules={[Autoplay, Pagination, Navigation]}
+                  modules={[Autoplay]}
                   autoplay={{
                     delay: 2000,
                     disableOnInteraction: false,
@@ -102,22 +186,9 @@ const Home = () => {
                   speed={2000}
                   slidesPerView={1}
                   spaceBetween={0}
-                  pagination={{
-                    type: "fraction",
-                    renderFraction: (currentClass, totalClass) => {
-                      return `<span class="custom-current ${currentClass}"></span><span class="custom-separator"> / </span><span class="custom-total ${totalClass}"></span>`;
-                    },
-                  }}
-                  navigation={{
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
-                  }}
-                  onBeforeInit={(swiper) => {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
-                  }}
+                  onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
                   className="swiper-container"
-                  style={{ height: "100vh" }}
+                  style={{ height: "100vh", position: "relative" }}
                 >
                   {sliderPhotos.map((photo, index) => {
                     const slideContents = [
@@ -285,14 +356,49 @@ const Home = () => {
                       </SwiperSlide>
                     );
                   })}
-                  <div className="pag-wrapper">
-                    <div ref={prevRef} className="swiper-button-prev">
-                      Prev
-                    </div>
-                    <div className="swiper-pagination swiper-pagination-fraction"></div>
-                    <div ref={nextRef} className="swiper-button-next">
-                      Next
-                    </div>
+                  {/* Animated Progress Indicators */}
+                  <div
+                    className="progress-indicators"
+                    style={{
+                      position: "absolute",
+                      bottom: "30px",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      display: "flex",
+                      gap: "15px",
+                      zIndex: 20
+                    }}
+                  >
+                    {sliderPhotos.map((_, index) => (
+                      <div
+                        key={index}
+                        className="progress-bar-container"
+                        style={{
+                          width: "60px",
+                          height: "3px",
+                          backgroundColor: "rgba(255, 255, 255, 0.3)",
+                          borderRadius: "9999px",
+                          overflow: "hidden",
+                          position: "relative"
+                        }}
+                      >
+                        <div
+                          className={`progress-bar-fill ${
+                            index === currentSlide && isProgressActive ? 'active' :
+                            index < currentSlide ? 'completed' : ''
+                          }`}
+                          key={`${index}-${currentSlide}-${isProgressActive}`}
+                          style={{
+                            position: "absolute",
+                            left: "0",
+                            top: "0",
+                            height: "100%",
+                            backgroundColor: "white",
+                            borderRadius: "9999px",
+                          }}
+                        ></div>
+                      </div>
+                    ))}
                   </div>
                 </Swiper>
               </div>
@@ -485,141 +591,150 @@ const Home = () => {
         </section>
 
         {/* Testimonials */}
-        <div className="container-full pad-l-15">
-          <div
-            className="bg-color row margin-md-65b margin-sm-45t margin-sm-50b margin-xs-30t margin-xs-15b"
-            style={{ padding: "50px 0px" }}
-          >
-            <div className="row margin-xs-30b">
-              <div className="col-sm-12">
-                <div className="headings-wrap load-fade">
-                  <div className="container padding-lg-35t">
-                    <div className="row">
-                      <div
-                        className="headings text_center"
-                        style={{ maxWidth: "900px" }}
-                      >
-                        <h5 className="subtitle fade-up transition-0">
-                          TESTIMONIALS
-                        </h5>
-                        <h3 className="title fade-up transition-1">
-                          Love Notes from People I've Photographed
-                        </h3>
+        <section className="" id="client">
+          <h2 className="section__header">~ TESTIMONIALS ~</h2>
+          <div className="swiper-container">
+            <Swiper
+              modules={[Autoplay, Pagination, Navigation]}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              speed={1000}
+              slidesPerView={1}
+              spaceBetween={30}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+              }}
+              navigation={{
+                nextEl: '.custom-swiper-button-next',
+                prevEl: '.custom-swiper-button-prev',
+              }}
+              className="swiper"
+            >
+            {reviews
+              .filter(review => review.review.trim() !== "")
+              .map((review, index) => {
+                const colors = [
+                  { bg: "#FF6B6B", text: "#fff" },
+                  { bg: "#4ECDC4", text: "#fff" },
+                  { bg: "#45B7D1", text: "#fff" },
+                  { bg: "#96CEB4", text: "#fff" },
+                  { bg: "#FECA57", text: "#fff" },
+                  { bg: "#FF9FF3", text: "#fff" },
+                  { bg: "#54A0FF", text: "#fff" },
+                  { bg: "#5F27CD", text: "#fff" }
+                ];
+                const colorIndex = index % colors.length;
+                const color = colors[colorIndex];
+
+                return (
+                  <SwiperSlide key={index}>
+                    <div className="">
+                      <div style={{
+                        width: "60px",
+                        height: "60px",
+                        borderRadius: "50%",
+                        backgroundColor: color.bg,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: "24px",
+                        fontWeight: "bold",
+                        color: color.text,
+                        margin: "0 auto 20px"
+                      }}>
+                        {review.name.charAt(0).toUpperCase()}
                       </div>
+                      <p>
+                        {review.review}
+                      </p>
+                      <div className="star-rating">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            size={16}
+                            fill="#ffd700"
+                            color="#ffd700"
+                            style={{ marginRight: "2px" }}
+                          />
+                        ))}
+                      </div>
+                      <h4>{review.name}</h4>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            {/* Custom Navigation buttons with Lucide icons */}
+            <div
+              className="custom-swiper-button-prev"
+              style={{
+                position: "absolute",
+                left: "20px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                background: "rgba(255, 255, 255, 0.9)",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                zIndex: 10,
+                transition: "all 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = "white";
+                e.target.style.transform = "translateY(-50%) scale(1.1)";
+                e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = "rgba(255, 255, 255, 0.9)";
+                e.target.style.transform = "translateY(-50%) scale(1)";
+                e.target.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
+              }}
+            >
+              <ChevronLeft size={24} color="#333" />
             </div>
-            <div className="col-sm-12">
-              <div className="main-header-testimonial classic modern">
-                <Swiper
-                  modules={[Autoplay, Pagination]}
-                  autoplay={{
-                    delay: 5000,
-                  }}
-                  loop={true}
-                  speed={1500}
-                  spaceBetween={0}
-                  direction="vertical"
-                  pagination={{
-                    clickable: true,
-                    renderBullet: (index, className) => {
-                      return `<span class="${className} custom-bullet">${
-                        index + 1
-                      }</span>`;
-                    },
-                  }}
-                  className="swiper-container"
-                  style={{ height: "400px" }}
-                >
-                  <SwiperSlide>
-                    <div className="content-slide">
-                      <div className="logo-customer s-back-switch">
-                        <img
-                          src="/images/goodline/banner-2.jpeg"
-                          alt=""
-                          className="s-img-switch"
-                        />
-                      </div>
-                      <div className="description clearfix">
-                        <p>
-                          "VIVID PHOTO STUDIO did an amazing job capturing our
-                          special day! They were professional, kind, and made us
-                          feel so comfortable in front of the camera. The photos
-                          are stunning and we couldn't be happier with how they
-                          turned out. We highly recommend VIVID PHOTO STUDIO to
-                          anyone looking for a talented and reliable wedding
-                          photographer. I would like to Thank each and everyone
-                          in the crew for your passion and professional love..
-                          Surely you will reach better heights.."
-                        </p>
-                      </div>
-                      <div className="user">
-                        <div className="user-info">
-                          <div className="name">Ashwin Manoharan</div>
-                          <div className="position">VIVID PHOTO STUDIO</div>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="content-slide">
-                      <div className="logo-customer s-back-switch">
-                        <img
-                          src="/images/goodline/banner-5.jpeg"
-                          alt=""
-                          className="s-img-switch"
-                        />
-                      </div>
-                      <div className="description clearfix">
-                        <p>
-                          "We were thoroughly impressed with the photography
-                          services provided for our housewarming ceremony. The
-                          team's professionalism, attention to detail, and
-                          exceptional photography skills made the experience
-                          truly memorable. We highly recommend their services."
-                        </p>
-                      </div>
-                      <div className="user">
-                        <div className="user-info">
-                          <div className="name">Er.Ruthra Prasath M S</div>
-                          <div className="position">VIVID PHOTO STUDIO</div>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="content-slide">
-                      <div className="logo-customer s-back-switch">
-                        <img
-                          src="/images/goodline/banner-6.jpg"
-                          alt=""
-                          className="s-img-switch"
-                        />
-                      </div>
-                      <div className="description clearfix">
-                        <p>
-                          "We selected GOODLINE Photography for our big day. The
-                          service provided was really awesome. Had a good team
-                          to coordinate with us. Thanks for all the services
-                          provided the quality of the album is really good.
-                          👍👌"
-                        </p>
-                      </div>
-                      <div className="user">
-                        <div className="user-info">
-                          <div className="name">Suganthi Alagendran</div>
-                          <div className="position">VIVID PHOTO STUDIO</div>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                </Swiper>
-              </div>
+            <div
+              className="custom-swiper-button-next"
+              style={{
+                position: "absolute",
+                right: "20px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                background: "rgba(255, 255, 255, 0.9)",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                zIndex: 10,
+                transition: "all 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = "white";
+                e.target.style.transform = "translateY(-50%) scale(1.1)";
+                e.target.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = "rgba(255, 255, 255, 0.9)";
+                e.target.style.transform = "translateY(-50%) scale(1)";
+                e.target.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
+              }}
+            >
+              <ChevronRight size={24} color="#333" />
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Second CTA */}
         <div className="container-full bg_img_new">

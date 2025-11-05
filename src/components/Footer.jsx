@@ -29,10 +29,6 @@ const Footer = () => {
                       className="fa fa-pinterest"
                     ></a>
                     <a
-                      href="https://www.instagram.com/vividphotostudio/"
-                      className="fa fa-instagram"
-                    ></a>
-                    <a
                       href="https://www.youtube.com/@VividPhotoStudio"
                       className="fa fa-youtube"
                     ></a>
@@ -42,10 +38,7 @@ const Footer = () => {
                     ></a>
                   </div>
                   <div className="copy_content text">
-                    © Vivid Photo Studio 2025. All Right Reserved. Designed by{" "}
-                    <a href="https://techparkinfosolutions.com/">
-                      Tech Park Info Solutions
-                    </a>
+                    © Vivid Photo Studio 2025. All Right Reserved.
                   </div>
                 </div>
               </div>
@@ -117,19 +110,33 @@ const Footer = () => {
         </div>
       </footer>
 
-      {/* WhatsApp Button */}
-      <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-      />
-      <a
-        href="https://api.whatsapp.com/send?phone=9150056656&text="
-        className="float"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <i className="fa fa-whatsapp my-float"></i>
-      </a>
+      {/* Social Media Icons */}
+      <div className="social-icons-fixed">
+        <a
+          href="tel:+919150056656"
+          className="social-icon phone-icon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/phone.png" alt="Phone" />
+        </a>
+        <a
+          href="https://www.instagram.com/vividphotostudio/"
+          className="social-icon instagram-icon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/insta.webp" alt="Instagram" />
+        </a>
+        <a
+          href="https://api.whatsapp.com/send?phone=9150056656&text="
+          className="social-icon whatsapp-icon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src="/whatsapp.webp" alt="WhatsApp" />
+        </a>
+      </div>
     </>
   );
 };

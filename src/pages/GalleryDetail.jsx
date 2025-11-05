@@ -119,7 +119,7 @@ const GalleryDetail = () => {
                     ) : error ? (
                       <p style={{ color: 'red' }}>{error}</p>
                     ) : (
-                      <p><a href="https://www.instagram.com/goodlinephotography/" target="_blank" rel="noopener noreferrer">https://www.instagram.com/goodlinephotography/</a></p>
+                      <p>Explore our photography collection.</p>
                     )}
                   </div>
                 </div>
