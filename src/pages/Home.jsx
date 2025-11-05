@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../components/ProgressIndicator.css";
 import "../components/ClientSection.css";
+import "../components/MobileBanner.css";
 import { categoriesService, photosService } from "../services/api";
 
 const reviews = [
@@ -82,8 +83,10 @@ const reviews = [
 
 const Home = () => {
   const [sliderPhotos, setSliderPhotos] = useState([]);
+  const [mobileSliderPhotos, setMobileSliderPhotos] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isProgressActive, setIsProgressActive] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Load external scripts
@@ -125,6 +128,18 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
     const fetchSliderPhotos = async () => {
       try {
         // First get all categories to find the slider category
@@ -132,10 +147,23 @@ const Home = () => {
         const sliderCategory = categories.find(
           (cat) => cat.name.toLowerCase() === "slider"
         );
+        const mobileSliderCategory = categories.find(
+          (cat) => cat.name.toLowerCase() === "mobileslider"
+        );
 
         if (sliderCategory) {
           const photos = await photosService.getByCategoryId(sliderCategory.id);
           setSliderPhotos(photos);
+
+          // If no mobile slider photos found, use regular slider photos as fallback
+          if (!mobileSliderCategory) {
+            setMobileSliderPhotos(photos);
+          }
+        }
+
+        if (mobileSliderCategory) {
+          const mobilePhotos = await photosService.getByCategoryId(mobileSliderCategory.id);
+          setMobileSliderPhotos(mobilePhotos);
         }
       } catch (error) {
         console.error("Error fetching slider photos:", error);
@@ -181,16 +209,34 @@ const Home = () => {
                   autoplay={{
                     delay: 2000,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
                   }}
                   loop={true}
                   speed={2000}
                   slidesPerView={1}
                   spaceBetween={0}
+                  allowTouchMove={true}
+                  touchRatio={1}
+                  touchAngle={45}
+                  grabCursor={true}
+                  simulateTouch={true}
+                  watchSlidesProgress={true}
+                  preventClicks={false}
+                  preventClicksPropagation={false}
                   onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
                   className="swiper-container"
-                  style={{ height: "100vh", position: "relative" }}
+                  style={{
+                    height: "100vh",
+                    position: "relative",
+                    minHeight: isMobile ? "100vh" : "auto",
+                    touchAction: "pan-y pinch-zoom"
+                  }}
                 >
-                  {sliderPhotos.map((photo, index) => {
+                  {(() => {
+                    const photosToUse = isMobile && mobileSliderPhotos.length > 0 ? mobileSliderPhotos : sliderPhotos;
+                    console.log('Mobile:', isMobile, 'Photos to use:', photosToUse.length);
+                    return photosToUse;
+                  })().map((photo, index) => {
                     const slideContents = [
                       {
                         title: "Capture today, relive it forever.",
@@ -244,7 +290,10 @@ const Home = () => {
                       <SwiperSlide
                         key={photo.id || index}
                         className="full-height-window"
-                        style={{ position: "relative" }}
+                        style={{
+                          position: "relative",
+                          height: "100vh"
+                        }}
                       >
                         <img
                           src={photo.image_url || photo.url}
@@ -254,8 +303,9 @@ const Home = () => {
                           }
                           style={{
                             width: "100%",
-                            height: "100%",
+                            height: "100vh",
                             objectFit: "cover",
+                            objectPosition: isMobile ? "center center" : "center",
                           }}
                         />
                         <div
@@ -279,16 +329,18 @@ const Home = () => {
                             textAlign: "center",
                             zIndex: 10,
                             color: "white",
+                            width: isMobile ? "90%" : "auto",
+                            padding: isMobile ? "0 15px" : "0",
                           }}
                         >
                           <div
                             className="subtitle"
                             style={{
-                              fontSize: "12px",
+                              fontSize: isMobile ? "10px" : "12px",
                               fontWeight: "600",
-                              letterSpacing: "2px",
+                              letterSpacing: isMobile ? "1px" : "2px",
                               textTransform: "uppercase",
-                              marginBottom: "20px",
+                              marginBottom: isMobile ? "15px" : "20px",
                               color: "white",
                             }}
                           >
@@ -297,13 +349,13 @@ const Home = () => {
                           <div
                             className="title"
                             style={{
-                              fontSize:
-                                window.innerWidth > 768 ? "60px" : "32px",
+                              fontSize: isMobile ? "28px" : window.innerWidth > 1024 ? "60px" : "48px",
                               fontFamily: '"Playfair Display", serif',
-                              marginBottom: "30px",
+                              marginBottom: isMobile ? "20px" : "30px",
                               lineHeight: "1.2",
                               color: "white",
-                              maxWidth: "800px",
+                              maxWidth: isMobile ? "95%" : "800px",
+                              padding: isMobile ? "0 10px" : "0",
                             }}
                           >
                             {content.title}
@@ -313,16 +365,17 @@ const Home = () => {
                             className="a-btn-2"
                             style={{
                               display: "inline-block",
-                              padding: "15px 30px",
+                              padding: isMobile ? "12px 20px" : "15px 30px",
                               backgroundColor: "transparent",
                               border: "2px solid white",
                               color: "white",
                               textDecoration: "none",
                               textTransform: "uppercase",
-                              fontSize: "12px",
+                              fontSize: isMobile ? "10px" : "12px",
                               fontWeight: "600",
-                              letterSpacing: "2px",
-                              marginRight: "10px",
+                              letterSpacing: isMobile ? "1px" : "2px",
+                              marginRight: isMobile ? "5px" : "10px",
+                              marginBottom: isMobile ? "10px" : "0",
                               transition: "all 0.3s ease",
                             }}
                           >
@@ -336,16 +389,16 @@ const Home = () => {
                               }`}
                               style={{
                                 display: "inline-block",
-                                padding: "15px 30px",
+                                padding: isMobile ? "12px 20px" : "15px 30px",
                                 backgroundColor: "white",
                                 border: "2px solid white",
                                 color: "black",
                                 textDecoration: "none",
                                 textTransform: "uppercase",
-                                fontSize: "12px",
+                                fontSize: isMobile ? "10px" : "12px",
                                 fontWeight: "600",
-                                letterSpacing: "2px",
-                                marginLeft: "10px",
+                                letterSpacing: isMobile ? "1px" : "2px",
+                                marginLeft: isMobile ? "5px" : "10px",
                                 transition: "all 0.3s ease",
                               }}
                             >
@@ -361,21 +414,24 @@ const Home = () => {
                     className="progress-indicators"
                     style={{
                       position: "absolute",
-                      bottom: "30px",
+                      bottom: isMobile ? "60px" : "30px",
                       left: "50%",
                       transform: "translateX(-50%)",
                       display: "flex",
-                      gap: "15px",
+                      gap: isMobile ? "8px" : "15px",
                       zIndex: 20
                     }}
                   >
-                    {sliderPhotos.map((_, index) => (
+                    {(() => {
+                      const photosToUse = isMobile && mobileSliderPhotos.length > 0 ? mobileSliderPhotos : sliderPhotos;
+                      return photosToUse;
+                    })().map((_, index) => (
                       <div
                         key={index}
                         className="progress-bar-container"
                         style={{
-                          width: "60px",
-                          height: "3px",
+                          width: isMobile ? "35px" : "60px",
+                          height: isMobile ? "2px" : "3px",
                           backgroundColor: "rgba(255, 255, 255, 0.3)",
                           borderRadius: "9999px",
                           overflow: "hidden",

@@ -1,0 +1,97 @@
+/* Mobile Banner Specific Styles */
+@media only screen and (max-width: 768px) {
+  .swiper-container {
+    height: 100vh !important;
+    min-height: 100vh;
+    touch-action: pan-y pinch-zoom;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .swiper-wrapper {
+    height: 100vh !important;
+  }
+
+  .swiper-slide {
+    height: 100vh !important;
+    overflow: hidden;
+  }
+
+  .full-height-window {
+    height: 100vh !important;
+  }
+
+  .s-img-switch {
+    height: 100vh !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  .content-wrap {
+    width: 90% !important;
+    padding: 0 15px !important;
+    max-width: none !important;
+  }
+
+  /* Ensure progress bar is visible above mobile UI */
+  .progress-indicators {
+    bottom: 60px !important;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .progress-bar-container {
+    width: 35px !important;
+    height: 2px !important;
+    pointer-events: none;
+  }
+
+  /* Ensure content doesn't interfere with swipe gestures */
+  .content-wrap {
+    pointer-events: none;
+  }
+
+  .content-wrap a {
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .progress-indicators {
+    bottom: 50px !important;
+    gap: 6px !important;
+  }
+
+  .progress-bar-container {
+    width: 25px !important;
+    height: 2px !important;
+  }
+
+  .content-wrap {
+    width: 95% !important;
+    padding: 0 10px !important;
+  }
+}
+
+/* Fix for mobile Safari viewport issues */
+@supports (-webkit-touch-callout: none) {
+  @media only screen and (max-width: 768px) {
+    .swiper-container {
+      height: 100vh;
+      height: -webkit-fill-available;
+    }
+
+    .full-height-window {
+      height: 100vh;
+      height: -webkit-fill-available;
+    }
+
+    .s-img-switch {
+      height: 100vh;
+      height: -webkit-fill-available;
+    }
+  }
+}
