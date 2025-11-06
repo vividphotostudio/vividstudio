@@ -43,7 +43,7 @@ const About = () => {
   return (
     <>
       {/* Preloader */}
-      <div className="preloader-text">
+      {/* <div className="preloader-text">
         <div className="text-wrap">
           <img
             src="/images/goodline/vivid-logo.jpg"
@@ -52,7 +52,7 @@ const About = () => {
           />
         </div>
         <span>loading...</span>
-      </div>
+      </div> */}
 
       <div className="main-wrapper" data-sound="/audio" data-top="992">
         {/* Banner */}

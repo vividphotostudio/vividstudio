@@ -1,7 +1,8 @@
 ;(function ($, window, document, undefined) {
     'use strict';
 
-    $(window).on('load', function () {
+    // Show preloader for exactly 1 second, then hide it
+    setTimeout(function () {
         if ($('.spinner-preloader-wrap').length) {
             $('.spinner-preloader-wrap').fadeOut(500);
         }
@@ -11,10 +12,10 @@
         if ($('.image-preloader-wrap').length) {
             $('.image-preloader-wrap').fadeOut(500);
         }
-	    if ($('.light-preloader-wrap').length) {
-		    $('.light-preloader-wrap').fadeOut(500);
-	    }
-    });
+        if ($('.light-preloader-wrap').length) {
+            $('.light-preloader-wrap').fadeOut(500);
+        }
+    }, 1000); // 1000ms = 1 second
 
     if ($('.fitVids').length) {
         $('body').fitVids({ignore: '.vimeo-video, .youtube-simple-wrap iframe, .iframe-video.for-btn iframe, .post-media.video-container iframe'});
