@@ -55,8 +55,8 @@ const Contact = () => {
         <div className="container-full">
           <div className="row">
             <div className="col-sm-12">
-              <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch">
-                <img src="/images/goodline/banner-2.jpeg" className="s-img-switch" alt="" />
+              <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch" style={{ height: '60vh', minHeight: '400px' }}>
+                <img src="/images/goodline/banner-2.jpeg" className="s-img-switch" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <span className="overlay"></span>
                 <div className="content">
                   <div className="row">
@@ -71,6 +71,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form */}
+        <div style={{ backgroundColor: '#ffffff', width: '100%', minHeight: '50vh' }}>
         <div className="container" style={{padding: '100px 0px 0px 0px'}}>
           <div className="row margin-lg-110b margin-sm-60b margin-xs-40b">
             <div className="col-sm-12">
@@ -143,6 +144,7 @@ const Contact = () => {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>

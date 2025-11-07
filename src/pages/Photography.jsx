@@ -78,8 +78,8 @@ const Photography = () => {
         <div className="container-full">
           <div className="row">
             <div className="col-sm-12">
-              <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch">
-                <img src="/images/goodline/banner-6.jpg" className="s-img-switch" alt="" />
+              <div className="container-fluid top-banner top-banner__scene medium_banner center_content simple s-back-switch" style={{ height: '60vh', minHeight: '400px' }}>
+                <img src="/images/goodline/banner-6.jpg" className="s-img-switch" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <span className="overlay"></span>
                 <div className="content">
                   <div className="row">
@@ -94,6 +94,7 @@ const Photography = () => {
         </div>
 
         {/* Content */}
+        <div style={{ backgroundColor: '#ffffff', width: '100%', minHeight: '50vh' }}>
         <div className="container archive-client">
           <div className="row">
             <div className="col-xs-12">
@@ -155,6 +156,7 @@ const Photography = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </>
