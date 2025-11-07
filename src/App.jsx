@@ -26,6 +26,34 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         {/* <Footer /> */}
+
+        {/* Social Media Icons */}
+        <div className="social-icons-fixed">
+          <a
+            href="tel:+919150056656"
+            className="social-icon phone-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/phone.png" alt="Phone" />
+          </a>
+          <a
+            href="https://www.instagram.com/vividphotostudio/"
+            className="social-icon instagram-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/insta.webp" alt="Instagram" />
+          </a>
+          <a
+            href="https://api.whatsapp.com/send?phone=9150056656&text="
+            className="social-icon whatsapp-icon"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/whatsapp.webp" alt="WhatsApp" />
+          </a>
+        </div>
       </div>
     </Router>
   );
