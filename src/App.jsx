@@ -30,7 +30,7 @@ function App() {
         {/* Social Media Icons */}
         <div className="social-icons-fixed">
           <a
-            href="tel:+919150056656"
+            href="tel:+919789911305"
             className="social-icon phone-icon"
             target="_blank"
             rel="noopener noreferrer"
@@ -46,7 +46,7 @@ function App() {
             <img src="/insta.webp" alt="Instagram" />
           </a>
           <a
-            href="https://api.whatsapp.com/send?phone=9150056656&text="
+            href="https://wa.me/919789911305?text=Hello%20VIVID%20Photo%20Studio"
             className="social-icon whatsapp-icon"
             target="_blank"
             rel="noopener noreferrer"

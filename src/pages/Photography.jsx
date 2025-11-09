@@ -129,7 +129,7 @@ const Photography = () => {
                           <p>{error}</p>
                         </div>
                       ) : (
-                        categories.map((category) => (
+                        categories.filter(cat => cat.name !== 'Slider' && cat.name !== 'MobileSlider').map((category) => (
                           <div key={category.id} className="col-lg-6 col-md-6 col-sm-12" style={{marginBottom: '20px'}}>
                             <div className="item block_item_0">
                               <a href={`/photography-detail/${category.id}`} className="item-link gridrotate-alb hover3" target="_self">

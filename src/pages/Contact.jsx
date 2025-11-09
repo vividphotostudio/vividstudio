@@ -1,6 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Construct WhatsApp message
+    const message = `*New Contact Form Submission*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.message}`;
+
+    // WhatsApp URL
+    const whatsappUrl = `https://wa.me/919789911305?text=${message}`;
+
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+  };
   useEffect(() => {
     // Load external scripts
     const scripts = [
@@ -99,17 +132,17 @@ const Contact = () => {
                       <div className="form btn-style-1 padding-xs-25b">
                         <div role="form" className="wpcf7" id="wpcf7-f3290-p3444-o1" lang="en" dir="ltr">
                           <div className="screen-reader-response"></div>
-                          <form className="wpcf7-form" noValidate="novalidate">
+                          <form className="wpcf7-form" noValidate="novalidate" onSubmit={handleSubmit}>
                             <p>
                               <span className="wpcf7-form-control-wrap name">
-                                <input type="text" name="name" value="" size="40" className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your name" />
+                                <input type="text" name="name" value={formData.name} onChange={handleInputChange} size="40" className="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your name" required />
                               </span>
                               <span className="wpcf7-form-control-wrap email">
-                                <input type="email" name="email" value="" size="40" className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your e-mail" />
+                                <input type="email" name="email" value={formData.email} onChange={handleInputChange} size="40" className="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your e-mail" required />
                               </span>
                               <br />
                               <span className="wpcf7-form-control-wrap textarea">
-                                <textarea name="textarea" cols="40" rows="10" className="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your message"></textarea>
+                                <textarea name="message" value={formData.message} onChange={handleInputChange} cols="40" rows="10" className="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Your message" required></textarea>
                               </span>
                               <br />
                               <input type="submit" value="Send" className="wpcf7-form-control wpcf7-submit" />
