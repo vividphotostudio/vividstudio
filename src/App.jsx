@@ -38,7 +38,7 @@ function App() {
             <img src="/phone.png" alt="Phone" />
           </a>
           <a
-            href="https://www.instagram.com/vividphotostudio/"
+            href="https://www.instagram.com/vivid__foto__studio/"
             className="social-icon instagram-icon"
             target="_blank"
             rel="noopener noreferrer"
